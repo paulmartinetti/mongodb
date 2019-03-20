@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 // connect to MongoDB
 // localhost would be 'mongodb://localhost/world'
 // in Atlas
-mongoose.connect('mongodb+srUUUPPPDDDDBBBgodb.net/world?retryWrites=true', { useNewUrlParser: true })
+mongoose.connect('mongodb+sUUUPPPDDDDBBBre.mongodb.net/world?retryWrites=true', { useNewUrlParser: true })
     .then(data => {
         console.log('mongo success')
     })
