@@ -29,37 +29,60 @@ router.get('/add', (req, res, next) => {
     const details = req.query
     // add new entry to the database using Promise
     Country.create(details)
-    .then(country=>{
-        res.json({
-            confirmation: 'success country add create',
-            data: country
-        })
-    })
-    .catch(err=>{
-        res.json({
-            confirmation: 'fail in countries add create',
-            message: err.message
-        })
-    })
-})
-
-// country id filter
-// syntax uri http://localhost:5000/countries/5c9290179fc78b3674bd8ee2
-router.get('/:id', (req, res, next) => {
-    Country.findById(req.params.id)
         .then(country => {
             res.json({
-                confirmation: 'success in countries id route',
-                // called the payload
+                confirmation: 'success country add create',
                 data: country
             })
         })
         .catch(err => {
             res.json({
-                confirmation: 'fail',
-                message: 'country not found for id: ' + req.params.id + '.'
-            })
+                confirmation: 'fail in countries add create',
+                message: err.message
         })
+    })
 })
 
-module.exports = router
+// update - pass in unique country id
+// and update certain params
+router.get('/update/:id', (req, res, next) => {
+    const updatedDetails = req.query
+    const countryId = req.params.id
+    
+    // the {new:true} sends update after the changes are applied
+    Country.findByIdAndUpdate(countryId, updatedDetails, { new: true })
+        .then(country => {
+            // if success, render
+            res.json({
+                confirmation: 'success country find by id and update',
+                data: country
+            })
+        })
+        .catch(err => {
+            res.json({
+                confirmation: 'fail in countries find by id and update',
+                message: err.message
+        }) 
+    })
+})
+
+    // country id filter
+    // syntax uri http://localhost:5000/countries/5c9290179fc78b3674bd8ee2
+    router.get('/:id', (req, res, next) => {
+        Country.findById(req.params.id)
+            .then(country => {
+                res.json({
+                    confirmation: 'success in countries id route',
+                    // called the payload
+                    data: country
+                })
+            })
+            .catch(err => {
+                res.json({
+                    confirmation: 'fail',
+                    message: 'country not found for id: ' + req.params.id + '.'
+                })
+            })
+    })
+
+    module.exports = router
