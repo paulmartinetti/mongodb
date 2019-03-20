@@ -1,4 +1,4 @@
-learning mongo, NoSQL, schema-less
+learning mongo, NoSQL, schema-less - Zenva
 
 // query records
 // filters - https://docs.mongodb.com/manual/reference/operator/query-comparison/
@@ -23,6 +23,12 @@ db.cities.deleteOne({_id:"005"})
 db.countries.deleteMany({continent:"europe"})
 // to drop a whole collection
 db.cities.drop()
+
+// mongoose ORM - object relational mapper, use JS
+conduit between my app and mongodb
+npm init
+npm i express --save
+npm i mongoose --save
 
 to run powershell as admin
 PS> Start-Process powershell -Verb runAs
